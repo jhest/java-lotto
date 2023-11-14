@@ -1,5 +1,11 @@
 package lotto;
 
+import lotto.domain.Lottery;
+import lotto.domain.LotteryCenter;
+import lotto.domain.WinningResult;
+import lotto.view.InputView;
+import lotto.view.ResultView;
+
 import java.util.List;
 
 public class Main {
@@ -19,13 +25,15 @@ public class Main {
         //생성된 로또 번호 표시
         resultView.issuedTicket(lotteries);
 
-        //당첨 번호 입력
+        //당첨 번호 & 보너스 볼 입력
         List<Integer> winningNumber = inputView.winningNumberInput();
+        int bonusNumber = inputView.bonusNumberInput();
 
         //당첨 여부 확인
-        List<Lottery> checkedLotteries = lotteryCenter.checkWinningNumber(lotteries, winningNumber);
+        List<Lottery> checkedLotteries = lotteryCenter.checkWinningNumber(lotteries, winningNumber, bonusNumber);
 
         //통계 및 결과 표시
-        resultView.finalResult(lotteryCenter.calcStat(checkedLotteries).toList());
+        WinningResult winningResult = lotteryCenter.calcStat(checkedLotteries);
+        resultView.finalResult(winningResult.getResult(), winningResult.getRate());
     }
 }

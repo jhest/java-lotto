@@ -1,4 +1,6 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.LotteryCenter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,5 +30,12 @@ public class InputView {
         return Arrays.stream(split)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public int bonusNumberInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("보너스 볼을 입력해 주세요.");
+
+        return scanner.nextInt();
     }
 }
