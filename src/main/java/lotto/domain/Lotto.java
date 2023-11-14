@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lottery {
+public class Lotto {
 
-    private final LottoNumber lotteryNumber;
+    private final LottoNumber lottoNumber;
     private Rank rank;
 
-    public Lottery() {
+    public Lotto() {
         List<Integer> allNumber = new ArrayList<>();
         numberBound(allNumber);
         Collections.shuffle(allNumber);
-        lotteryNumber = new LottoNumber(allNumber);
+        lottoNumber = new LottoNumber(allNumber);
     }
 
     private static void numberBound(List<Integer> allNumber) {
@@ -22,12 +22,12 @@ public class Lottery {
         }
     }
 
-    public Lottery(LottoNumber lottoNumber) {
-        lotteryNumber = lottoNumber;
+    public Lotto(LottoNumber lottoNumber) {
+        this.lottoNumber = lottoNumber;
     }
 
     public LottoNumber selectedNumber() {
-        return lotteryNumber;
+        return lottoNumber;
     }
 
     public void winningCheck(int matchCount, boolean matchBonus) {

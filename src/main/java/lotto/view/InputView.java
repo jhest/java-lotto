@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.LotteryCenter;
+import lotto.domain.LottoCenter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,10 +14,10 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
 
         int cash = scanner.nextInt();
-        int issuedTicket = new LotteryCenter().issuedNumber(cash);
+        int tickets = new LottoCenter().buyCount(cash);
 
-        System.out.println(issuedTicket + "개를 구매했습니다.");
-        return issuedTicket;
+        System.out.println(tickets + "개를 구매했습니다.");
+        return tickets;
     }
 
     public List<Integer> winningNumberInput() {
