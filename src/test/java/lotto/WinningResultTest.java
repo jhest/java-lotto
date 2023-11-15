@@ -1,6 +1,8 @@
 package lotto;
 
-import org.assertj.core.api.Assertions;
+import lotto.domain.Lotto;
+import lotto.domain.LottoCenter;
+import lotto.domain.WinningResult;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,17 +14,19 @@ class WinningResultTest {
 
     @Test
     void 통계_계산() {
-        LotteryCenter lotteryCenter = new LotteryCenter();
-        List<Lottery> lotteries = lotteryCenter.generateTicket(lotteryCenter.issuedNumber(10000));
+        LottoCenter lottoCenter = new LottoCenter();
+        int cash = 10000;
+        List<Lotto> lottos = lottoCenter.generateTicket(lottoCenter.buyLotto(cash));
 
-        WinningResult winningResult = new WinningResult(lotteries, 10000);
-        List<String> list = winningResult.toList();
+        WinningResult winningResult = new WinningResult(lottos);
+        List<Long> result = winningResult.getResult();
+        float rate = winningResult.getRate(cash);
 
-        assertThat(list).hasSize(5);
-        assertThat(Integer.parseInt(list.get(0))).isLessThanOrEqualTo(10);
-        assertThat(Integer.parseInt(list.get(1))).isLessThanOrEqualTo(10);
-        assertThat(Integer.parseInt(list.get(2))).isLessThanOrEqualTo(10);
-        assertThat(Integer.parseInt(list.get(3))).isLessThanOrEqualTo(10);
-        assertThat(Float.parseFloat(list.get(4))).isLessThanOrEqualTo(1);
+        assertThat(result).hasSize(4);
+        assertThat(result.get(0)).isLessThanOrEqualTo(10);
+        assertThat(result.get(1)).isLessThanOrEqualTo(10);
+        assertThat(result.get(2)).isLessThanOrEqualTo(10);
+        assertThat(result.get(3)).isLessThanOrEqualTo(10);
+        assertThat(rate).isLessThanOrEqualTo(1);
     }
 }
