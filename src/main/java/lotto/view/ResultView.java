@@ -1,6 +1,9 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoNo;
+import lotto.domain.LottoNumber;
+import lotto.domain.Result;
 
 import java.util.List;
 
@@ -8,11 +11,11 @@ public class ResultView {
 
     public void issuedTicket(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto.getLottoNumbers().getNumbers());
         }
     }
 
-    public void finalResult(List<Long> result, float rate) {
+    public void finalResult(Result result, float rate) {
         System.out.println("당첨 통계");
         System.out.println("---------");
         System.out.println("3개 일치 (5000원)- " + result.get(4) + "개");

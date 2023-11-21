@@ -8,7 +8,7 @@ public class Lotto {
     private final LottoNumber lottoNumber;
     private Rank rank;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<LottoNo> numbers) {
         lottoNumber = new LottoNumber(numbers);
     }
 
@@ -16,15 +16,15 @@ public class Lotto {
         lottoNumber = new LottoNumber();
     }
 
-    public List<Integer> getNumbers() {
-        return lottoNumber.getNumbers();
+    public LottoNumber getLottoNumbers() {
+        return lottoNumber;
     }
 
-    public void matchCount(Lotto winningNumbers, int bonusNumber) {
-        int count = (int) lottoNumber.getNumbers().stream()
-                .filter(n -> winningNumbers.getNumbers().stream()
+    public void matchCount(Lotto winningNumbers, LottoNo bonusNumber) {
+        int count = (int) lottoNumber.getLottoNos().stream()
+                .filter(n -> winningNumbers.getLottoNumbers().getLottoNos().stream()
                         .anyMatch(Predicate.isEqual(n))).count();
-        boolean bonusMatch = lottoNumber.getNumbers().stream()
+        boolean bonusMatch = lottoNumber.getLottoNos().stream()
                 .anyMatch(Predicate.isEqual(bonusNumber));
         this.rank = Rank.valueOf(count, bonusMatch);
     }

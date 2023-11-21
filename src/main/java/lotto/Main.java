@@ -2,6 +2,8 @@ package lotto;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoCenter;
+import lotto.domain.LottoNo;
+import lotto.domain.Result;
 import lotto.view.InputView;
 import lotto.view.ResultView;
 
@@ -23,13 +25,13 @@ public class Main {
 
         //당첨 번호 입력
         Lotto winningNumbers = inputView.winningNumberInput();
-        int bonusNumber = inputView.bonusNumberInput();
+        LottoNo bonusNumber = new LottoNo(inputView.bonusNumberInput());
 
         //당첨 확인
         lottoCenter.matchWinningNumbers(lottos, winningNumbers, bonusNumber);
 
         //통계 산출
-        List<Long> result = lottoCenter.checkWinningResult(lottos);
+        Result result = lottoCenter.checkWinningResult(lottos);
         float rate = lottoCenter.checkWinningRate();
 
         //통계 출력

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.domain.LottoNo;
 import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.Test;
 
@@ -12,19 +13,16 @@ import static org.assertj.core.api.Assertions.*;
 class LottoNumberTest {
 
     @Test
-    void 숫자_범위_테스트() {
-        List<Integer> numberOver = Arrays.asList(1, 2, 3, 4, 5, 46);
-        List<Integer> numberUnder = Arrays.asList(0, 2, 3, 4, 5, 6);
+    void 숫자_갯수() {
+        List<LottoNo> numbers = Arrays.asList(new LottoNo(1), new LottoNo(2), new LottoNo(3), new LottoNo(4), new LottoNo(5));
 
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LottoNumber(numberOver));
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> new LottoNumber(numberUnder));
+                .isThrownBy(() -> new LottoNumber(numbers));
     }
 
     @Test
-    void 숫자_갯수_테스트() {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+    void 같은_숫자() {
+        List<LottoNo> numbers = Arrays.asList(new LottoNo(1), new LottoNo(2), new LottoNo(3), new LottoNo(4), new LottoNo(5), new LottoNo(5));
 
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new LottoNumber(numbers));
