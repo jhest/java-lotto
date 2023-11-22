@@ -56,18 +56,14 @@ public class InputView {
 
     private static List<LottoNo> getLottoNos(Scanner scanner) {
         String input = scanner.nextLine();
-        numberInputValidCheck(input);
+        if (input.isBlank() || input.isEmpty()) {
+            throw new IllegalArgumentException("6개 숫자를 입력해주세요.");
+        }
         String[] split = input.replaceAll("\\s", "").split(",");
 
         return Arrays.stream(split)
                 .map(Integer::parseInt)
                 .map(LottoNo::new)
                 .collect(Collectors.toList());
-    }
-
-    private static void numberInputValidCheck(String input) {
-        if (input.isBlank() || input.isEmpty()) {
-            throw new IllegalArgumentException("6개 숫자를 입력해주세요.");
-        }
     }
 }
